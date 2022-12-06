@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ea21bf70a6bbe4c9101865c3dd5486, type: 3}
+  m_Name: Silver
+  m_EditorClassIdentifier: 
+  Name: Silver
+  CountPerUnit: 0
+  MainSprite: {fileID: 21300000, guid: 78f862f05a0a8ea479497854b0d201a9, type: 3}
+  MainSpriteOffset: {x: 0, y: 0, z: 0}
+  LootSprite: {fileID: 21300000, guid: 6c21db886ca23a34481da25807f342c0, type: 3}
+  ShopItemIcon: {fileID: 21300000, guid: 6c21db886ca23a34481da25807f342c0, type: 3}
+  ShopItemIconMini: {fileID: 0}
+  ItemType: 0
+  RarityType: 3
+  InventoryStackSize: 20

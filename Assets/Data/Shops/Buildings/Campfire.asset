@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b263a461a92cf49bd520e10d456724, type: 3}
+  m_Name: Campfire
+  m_EditorClassIdentifier: 
+  Name: Campfire
+  StartHP: 100
+  Level: 0
+  Icon: {fileID: 21300000, guid: 5d0febff0e4843d47aa06f0c890d5a4d, type: 3}
+  Description: 
+  Unique: 1
+  IsStock: 1
+  Production: []
+  SizeXZ: 0
+  Height: 1
+  YOffset: -0.1
+  ZOffset: 0.25
+  OpenedMenu: {fileID: 1039577635498306439, guid: ce750f35b705318468b0209642a44c05, type: 3}
+  NeedlyBuilding: {fileID: 0}
+  NextLevelFor: {fileID: 0}
+  MinimalBuilderLevel: 0
+  BuildMaterials:
+  - Name: Log
+    NeedlyCount: 10
+    CurrentCount: 0
+  - Name: Rock
+    NeedlyCount: 5
+    CurrentCount: 0

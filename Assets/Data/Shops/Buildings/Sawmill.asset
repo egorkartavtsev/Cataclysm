@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b263a461a92cf49bd520e10d456724, type: 3}
+  m_Name: Sawmill
+  m_EditorClassIdentifier: 
+  Name: Sawmill
+  StartHP: 500
+  Level: 2
+  Icon: {fileID: 21300000, guid: 08829097ef5b115419ad7257ad564148, type: 3}
+  Description: 
+  Unique: 0
+  IsStock: 0
+  Production: []
+  SizeXZ: 1
+  Height: 4
+  YOffset: 0.9
+  ZOffset: 1.5
+  OpenedMenu: {fileID: 0}
+  NeedlyBuilding: {fileID: 11400000, guid: 7c1fe95834846ac44a68404568065907, type: 2}
+  NextLevelFor: {fileID: 11400000, guid: a8e225e6eb3d7714ba885631298b5a9b, type: 2}
+  MinimalBuilderLevel: 1
+  BuildMaterials:
+  - Name: Wood
+    NeedlyCount: 25
+    CurrentCount: 0

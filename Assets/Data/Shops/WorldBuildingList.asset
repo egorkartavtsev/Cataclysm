@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051c91172eb81ce4a9751de846a2240d, type: 3}
+  m_Name: WorldBuildingList
+  m_EditorClassIdentifier: 
+  BuildList:
+  - {fileID: 11400000, guid: 7c1fe95834846ac44a68404568065907, type: 2}
+  - {fileID: 11400000, guid: a5e6068bb68a524488f0baa4ae346130, type: 2}
+  - {fileID: 11400000, guid: 169851d71118152418e924603bf2fa7e, type: 2}
+  - {fileID: 11400000, guid: fa2411497bf07c44b9c51fb89d294edc, type: 2}
+  - {fileID: 11400000, guid: a8e225e6eb3d7714ba885631298b5a9b, type: 2}
+  - {fileID: 11400000, guid: 130b235dca05c3846ad5b15bbc17fbad, type: 2}
+  - {fileID: 11400000, guid: a9a0cd1faa2c32845acec95ccefdff67, type: 2}
