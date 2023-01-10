@@ -17,8 +17,26 @@ public class CharacterBag : MonoBehaviour
         SettlerId = _settlerId;
         character = WorldData.Characters[_settlerId];
 
-        if(_isNew)
+        if (_isNew)
+        { 
             character.Bag = new List<LocalResItem>();
+        }
+    }
+    public void Init(Player player, bool _isNew)
+    {
+        SettlerId = 0;
+        character = player.player;
+
+        if (_isNew)
+        {
+            character.Bag = new List<LocalResItem>();
+        }
+    }
+
+    public void InitEmpty()
+    {
+        character = new Character();
+        character.Bag = new List<LocalResItem>();
     }
 
     public bool AddNewItem(LocalResItem item)

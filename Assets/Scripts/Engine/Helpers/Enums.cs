@@ -32,3 +32,9 @@ public enum GameMode
     BuildingView,
     InMenu
 }
+
+public enum SceneType
+{ 
+    Prod,
+    TestPlayer
+}
