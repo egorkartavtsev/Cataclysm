@@ -90,13 +90,13 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            offset += (curPos.x < 149) ? Vector3.back : Vector3.zero;
+            offset += (curPos.z > 1) ? Vector3.back : Vector3.zero;
             checkMove++;
             direct.Vertical -= 1f;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            offset += (curPos.z > 1) ? Vector3.right : Vector3.zero;
+            offset += (curPos.x < 149) ? Vector3.right : Vector3.zero;
             checkMove++;
             direct.Horizontal += 1f;
         }

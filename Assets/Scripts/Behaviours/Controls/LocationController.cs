@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Models;
 using GameData;
+using Unity.VisualScripting;
 
 
 public class LocationController : MonoBehaviour
@@ -17,6 +18,7 @@ public class LocationController : MonoBehaviour
     [Header("GameState")]
     public bool InMenu;
     public GameMode gameMode;
+    public SceneType sceneType;
 
     [Header("Cameras")]
     public GameObject BuildView;
@@ -25,7 +27,15 @@ public class LocationController : MonoBehaviour
 
     void Start()
     {
-        CurrentLocation = WorldData.Locations.Find(l => l.Current);
+        switch (sceneType)
+        {
+            case SceneType.TestPlayer:
+                CurrentLocation = new LocationData();
+                break;
+            default:
+                CurrentLocation = WorldData.Locations.Find(l => l.Current);
+                break;
+        }
         LocationEventManager.GameModeChanged += ToggleGameMode;
     }
 

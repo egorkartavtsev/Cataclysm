@@ -8,18 +8,60 @@ using Models;
 using Abstractions;
 using UnityEngine.EventSystems;
 using Assets.Scripts.Engine.Models.Character;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
     public readonly float actionRadius = 1.5f;
     public Animator animator;
+    public LocationController locationController;
 
     ActionManager manager;
-    Character player;
+    public Character player;
     Rigidbody rb;
+    CharacterBag bag;
 
     // Start is called before the first frame update
     void Start()
+    {
+        bool isNew = true;
+        switch (locationController.sceneType)
+        {
+            case SceneType.TestPlayer:
+                player = new Character();
+                gameObject.GetComponent<CharacterBag>().Init(this, true);
+                break;
+            default:
+                isNew = InitPlayer();
+                gameObject.GetComponent<CharacterBag>().Init(0, isNew);
+                break;
+        }
+        
+
+        gameObject.transform.position = new Vector3(player.PosX, 0.5f, player.PosZ);
+        Camera.main.transform.position = new Vector3(player.PosX, 7f, player.PosZ - 7f);
+        manager = gameObject.GetComponent<ActionManager>();
+
+        rb = gameObject.GetComponent<Rigidbody>();
+        int i = 0;
+    }
+
+    private void OnDestroy()
+    {
+        if (locationController.sceneType != SceneType.TestPlayer)
+        { 
+            Vector3 pos = GetCurrentTile();
+            WorldData.Characters[0].PosX = Mathf.RoundToInt(pos.x);
+            WorldData.Characters[0].PosZ = Mathf.RoundToInt(pos.z);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+    private bool InitPlayer()
     {
         bool isNew = false;
         player = WorldData.Characters[0];
@@ -44,26 +86,7 @@ public class Player : MonoBehaviour
             isNew = true;
             WorldData.SaveWorldData();
         }
-
-        gameObject.transform.position = new Vector3(player.PosX, 0.5f, player.PosZ);
-        Camera.main.transform.position = new Vector3(player.PosX, 7f, player.PosZ - 7f);
-        manager = gameObject.GetComponent<ActionManager>();
-
-        gameObject.GetComponent<CharacterBag>().Init(0, isNew);
-        rb = gameObject.GetComponent<Rigidbody>();
-        //SetSO();
-    }
-
-    private void OnDestroy()
-    {
-        Vector3 pos = GetCurrentTile();
-        WorldData.Characters[0].PosX = Mathf.RoundToInt(pos.x);
-        WorldData.Characters[0].PosZ = Mathf.RoundToInt(pos.z);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        return isNew;
     }
 
     public bool InActionArea(Vector3 point)
