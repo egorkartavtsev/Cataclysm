@@ -10,4 +10,14 @@ public class AnimatorEventHandler : MonoBehaviour
     {
         actionManager.DoAction();
     }
+
+    public void EndAttack()
+    {
+        actionManager.AllowAttack = true;
+    }
+
+    public void DoAttack()
+    { 
+        actionManager.DoAttack();
+    }
 }

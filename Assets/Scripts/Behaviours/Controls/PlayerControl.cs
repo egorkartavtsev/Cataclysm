@@ -5,7 +5,7 @@ using UnityEngine;
 using Abstractions;
 using Models;
 using GameData;
-using Assets.Scripts.Engine.Models.Character;
+using CharacterOptions;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -65,6 +65,19 @@ public class PlayerControl : MonoBehaviour
                 //Instantiate(clickMarker, hit.point, Quaternion.identity); //places clickMarker at hit.point. This isn't needed, just there for visualisation.
             }
         }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Casts the ray and get the first game object hit 
+            if (Physics.Raycast(ray, out hit))
+            {
+                if(manager.AllowAttack)
+                    manager.StartAttack(hit.transform.position);
+            }
+        }
     }
 
     void MovingControl()
@@ -105,13 +118,14 @@ public class PlayerControl : MonoBehaviour
         if (checkMove > 0)
         {
             direct.Speed = 1f;
-            player.DoMove(offset * curSpeed, direct);
+            manager.DoMove(offset * curSpeed, direct);
         }
         else
         { 
+            manager.AllowAttack = true;
             direct.Speed = 0f;
             direct.Horizontal = manager.animator.GetFloat("Horizontal");
-            player.DoMove(Vector3.zero, direct);
+            manager.DoMove(Vector3.zero, direct);
         }
     }
 

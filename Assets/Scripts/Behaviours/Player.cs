@@ -7,7 +7,7 @@ using GameData;
 using Models;
 using Abstractions;
 using UnityEngine.EventSystems;
-using Assets.Scripts.Engine.Models.Character;
+using CharacterOptions;
 using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     ActionManager manager;
     public Character player;
-    Rigidbody rb;
     CharacterBag bag;
 
     // Start is called before the first frame update
@@ -42,7 +41,6 @@ public class Player : MonoBehaviour
         Camera.main.transform.position = new Vector3(player.PosX, 7f, player.PosZ - 7f);
         manager = gameObject.GetComponent<ActionManager>();
 
-        rb = gameObject.GetComponent<Rigidbody>();
         int i = 0;
     }
 
@@ -100,16 +98,7 @@ public class Player : MonoBehaviour
         return transform.position;
     }
 
-    public void DoMove(Vector3 offset, CharacterMoveDirection direct)
-    {
-        //manager.NextAction();
-        rb.MovePosition(gameObject.transform.position +  offset);
-        Camera.main.transform.position = new Vector3(gameObject.transform.position.x, Camera.main.transform.position.y, gameObject.transform.position.z - 7);
-
-        animator.SetFloat("Horizontal", direct.Horizontal);
-        animator.SetFloat("Vertical", direct.Vertical);
-        animator.SetFloat("Speed", direct.Speed);
-    }
+    
 
     public Vector3 GetCurrentTile()
     {
