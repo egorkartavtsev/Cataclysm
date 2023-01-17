@@ -61,6 +61,9 @@ public class Construction : MonoBehaviour
     public void Install()
     {
         Vector3 pos = gameObject.transform.position;
+
+        if (!BuildAllow(pos)) return;
+
         Tile mainTile = new Tile();
 
         List<Tile> tilesGrid = WorldData
