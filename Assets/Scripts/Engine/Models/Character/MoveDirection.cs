@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Engine.Models.Character
+namespace CharacterOptions
 {
     public class CharacterMoveDirection
     {

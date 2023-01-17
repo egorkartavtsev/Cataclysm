@@ -629,27 +629,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walkl_2
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 0
-        width: 36
-        height: 66
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 635b0d545df6b4e49a1d9a730b70d32f
-      internalID: 1088252478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: walkl_3
       rect:
         serializedVersion: 2
@@ -965,7 +944,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walkl2
+      name: walkl_2
       rect:
         serializedVersion: 2
         x: 208
@@ -981,6 +960,174 @@ TextureImporter:
       bones: []
       spriteID: fdce6c8bb52734b468c53629165bcf62
       internalID: -202919177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordR_2
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 920
+        width: 106
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3928f517af3e6b743be92f4ee23c0236
+      internalID: 1267425788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordR_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 920
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2452486f9c4997745bf0a8c1959a45f0
+      internalID: 1526652419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordR_3
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 920
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9084860e98f98b24fa9b01bd3326305b
+      internalID: -233759436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordR_4
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 920
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83f1f67ffb3c5e44eaf02e4a1ae636d2
+      internalID: 1907259440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordL_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 810
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d153b6de7d0b7b542b567a3e006ab027
+      internalID: 1758966932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordL_2
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 810
+        width: 105
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1bb82a5021eec341b8ec6d2794d6313
+      internalID: 609165049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordL_3
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 810
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26926ac10466fdb40b3dcda78e199367
+      internalID: -1796163534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swordL_4
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 810
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 206649c5e14a64f41acf1abdf3624351
+      internalID: 1523281966
       vertices: []
       indices: 
       edges: []
@@ -1001,19 +1148,20 @@ TextureImporter:
       pngwing.com (6)_13: -903096718
       pngwing.com (6)_73: -500743372
       walkd_4: 1434377428
-      walkl2: -202919177
       pngwing.com (6)_69: -1976244237
       pngwing.com (6)_72: -917657399
       walkl_1: -21206218
-      pngwing.com (6)_1: -981551667
-      pngwing.com (6)_47: 1767545986
+      swordL_1: 1418877483
+      swordR_1: 1526652419
       walkd_2: 241194677
-      pngwing.com (6)_49: -604505924
+      pngwing.com (6)_47: 1767545986
       biter_1: 442077935
+      pngwing.com (6)_49: -604505924
+      biter_3: 112363103
       pngwing.com (6)_70: 1287578968
       walkr_3: -315873909
-      biter_3: 112363103
-      pngwing.com (6)_3: 1418877483
+      swordL_2: 609165049
+      biteL_2: 879532076
       walkr_5: -1826711366
       walkr_8: -1830325678
       walkr_2: -2145778115
@@ -1027,32 +1175,32 @@ TextureImporter:
       biteL_1: 938686171
       pngwing.com (6)_54: 1707555611
       walkr_6: 1429955796
-      pngwing.com (6)_4: 492545952
-      walkl_5: 57267116
-      pngwing.com (6)_68: 1671466697
-      biteL_2: 879532076
       pngwing.com (6)_14: 1967774507
+      pngwing.com (6)_4: 492545952
+      pngwing.com (6)_68: 1671466697
+      walkl_5: 57267116
       pngwing.com (6)_66: 2040678734
       walkup_4: 1132725556
       pngwing.com (6)_71: -1035361407
       walkup_5: -450918147
       walkd_1: 665444162
       walkup_6: -847309919
+      swordL_4: 1523281966
+      swordL_3: -1796163534
       pngwing.com (6)_6: -1621185071
       walkr_1: -920190250
-      pngwing.com (6)_0: -1561233733
       walkup_2: 2015670005
-      pngwing.com (6)_2: -774907051
       walkup_3: -1726631769
+      walkr_7: 608237220
       walkl_6: -1260739897
       pngwing.com (6)_53: 1592000637
       pngwing.com (6)_7: -1746197685
       walkl_8: -1089395045
       pngwing.com (6)_56: -1488962315
       walkd_3: -1083824471
-      walkr_7: 608237220
-      biteL_4: -1684157003
       biter_2: -2125233281
+      biteL_4: -1684157003
+      swordR_4: -774907051
       pngwing.com (6)_46: -322577807
       pngwing.com (6)_8: -398329832
       pngwing.com (6)_11: -1228688603
@@ -1064,11 +1212,13 @@ TextureImporter:
       pngwing.com (6)_10: 879785574
       walkup_1: 355190517
       walkl_3: -1875015770
+      swordR_2: -1561233733
       pngwing.com (6)_50: -28178576
       walkup_7: -1240722288
       biter_4: 1994149025
       walkl_7: 739182535
-      walkl_2: 1088252478
+      swordR_3: -981551667
+      walkl_2: -202919177
       pngwing.com (6)_12: -326287142
       pngwing.com (6)_52: -412904535
       walkr_4: 2116171981
