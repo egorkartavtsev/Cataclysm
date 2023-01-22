@@ -90,8 +90,12 @@ public class Construction : MonoBehaviour
             }
         );
 
-        GameObject container = GameObject.Find("BuildingContainer");
-        container.GetComponent<BuildingContainerScr>().ShowNewBuild(mainTile, SO);
+        var container = GameObject.Find("BuildingContainer").GetComponent<BuildingContainerScr>();
+        
+        //проверка на needly
+        if (!container.totalBuildingList.BuildList.Contains(SO.NeedlyBuilding)) return;
+        container.ShowNewBuild(mainTile, SO);
+
 
         WorldData.Settlements.Find(s => s.Home).WriteOffFromStock(SO.BuildMaterials);
 
