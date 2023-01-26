@@ -25,6 +25,8 @@ public class TileScript : MonoBehaviour
         if (!Locked)
         { 
             bool status = (tochedTiles.IndexOf(tile) >= 0);
+
+            Locked = status;
             SetLockedStatus(status);
         }
     }
