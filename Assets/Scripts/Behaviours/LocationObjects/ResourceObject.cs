@@ -19,9 +19,7 @@ public class ResourceObject : MonoBehaviour, IInteractive, ILootProducer
         Action = new GatherResource();
         Action.IsDone = false;
         Action.TargetObject = gameObject;
-    }
-
-    
+    }    
 
     public void Remove()
     {
