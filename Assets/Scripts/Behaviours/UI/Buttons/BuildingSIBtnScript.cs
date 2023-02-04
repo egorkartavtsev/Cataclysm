@@ -6,7 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using GameData;
 using Models;
-
+using Unity.VisualScripting;
+using Assets.Scripts.Engine.Helpers;
 
 public class BuildingSIBtnScript : MonoBehaviour
 {
@@ -84,11 +85,18 @@ public class BuildingSIBtnScript : MonoBehaviour
     public void SetDisabled()
     {
         gameObject.GetComponent<Button>().interactable = false;
-        gameObject.GetComponent<Image>().sprite = Preloader.LockedIcon;
+        var image = gameObject.GetComponent<Image>();
+
+        var newTex = TextureFunctions.Resize(image.sprite.texture,512,512);
+        TextureFunctions.AddWatermark(newTex, Preloader.LockedIcon.texture);
+
+        var nsprite = Sprite.Create(newTex, new Rect(0f,0f,newTex.width,newTex.height), Vector2.zero);
+        image.sprite = nsprite;
     }
 
     public void ShowDetails()
     {
         DetailsPanel.FillInfo(BuildingSO);
     }
+
 }
