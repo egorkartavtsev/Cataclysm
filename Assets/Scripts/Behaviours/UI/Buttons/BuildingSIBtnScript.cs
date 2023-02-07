@@ -52,6 +52,9 @@ public class BuildingSIBtnScript : MonoBehaviour
                 .Where(t => t.Contains != null && t.Contains.ObjectType == LocationObjectType.Building)
                 .ToList();
 
+            //TO-DO:
+            //var bs = WorldData.Buildings.Where(b => b.Settlement.Home && b.Name).ToList();
+
             Tile lbo = blds.Where(b => b.Contains.Name == BuildingSO.Name).FirstOrDefault();
 
             _allowed = lbo == null;

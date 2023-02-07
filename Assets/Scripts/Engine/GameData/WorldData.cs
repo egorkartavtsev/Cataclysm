@@ -18,6 +18,7 @@ namespace GameData
         public static List<LocationData> Locations { get; set; }
         public static List<SettlementData> Settlements { get; set; }
         public static List<Character> Characters { get; set; }
+        public static List<BuildingData> Buildings { get; set; }
 
         public static void AddLocation(LocationData locationData)
         {

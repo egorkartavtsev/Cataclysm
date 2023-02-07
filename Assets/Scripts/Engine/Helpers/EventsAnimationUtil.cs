@@ -46,6 +46,18 @@ namespace Helpers
             owner.RemoveDmgLabel(dmgLabel);
         }
 
+        public static IEnumerator<Type> ShellFly(ShellsContainer owner, GameObject shell, Vector3 endpoint)
+        {
+            int p = 0;
+            while (shell.transform.position != endpoint || p < 100000)
+            {
+                //TO-DO: сдулать нормальное передвижение снаряда + проверка столкновений + поворот снаряда
+                Vector2 vector2 = new Vector2(endpoint.x - shell.transform.position.x, endpoint.z - shell.transform.position.z).normalized;
+                shell.transform.position += new Vector3(vector2.x, 0f, vector2.y)*Time.deltaTime;
+                yield return null;
+            }
+        }
+
         public static IEnumerator<WaitForSeconds> Wait(float sec, IAction action)
         {
             yield return new WaitForSeconds(sec);
