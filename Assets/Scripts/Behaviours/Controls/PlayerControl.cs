@@ -80,8 +80,9 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void MovingControl()
+    void KeyboardControl()
     {
+        #region Moving
         int checkMove = 0;
         Vector3 offset = Vector3.zero;
         Vector3 curPos = player.GetPosition();
@@ -127,11 +128,16 @@ public class PlayerControl : MonoBehaviour
             direct.Horizontal = manager.animator.GetFloat("Horizontal");
             manager.DoMove(Vector3.zero, direct);
         }
+        #endregion
+
+        #region Actions
+        if (Input.GetKeyUp(KeyCode.Q)) manager.ToggleWeapon();
+        #endregion
     }
 
     void DefaultControl()
     {
-        MovingControl();
+        KeyboardControl();
         MouseControl();
     }
     #endregion

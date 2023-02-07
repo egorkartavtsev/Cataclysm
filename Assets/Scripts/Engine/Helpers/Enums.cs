@@ -38,3 +38,10 @@ public enum SceneType
     Prod,
     TestPlayer
 }
+
+public enum WeaponType
+{ 
+    Melee,
+    Ranged,
+    Throwing
+}

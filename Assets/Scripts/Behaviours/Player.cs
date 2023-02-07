@@ -12,13 +12,15 @@ using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
+    public WeaponShop weaponShop;
     public readonly float actionRadius = 1.5f;
     public Animator animator;
     public LocationController locationController;
 
-    ActionManager manager;
+    public AttackManager attackManager;
+    public CharacterBag bag;
+
     public Character player;
-    CharacterBag bag;
 
     // Start is called before the first frame update
     void Start()
@@ -28,20 +30,19 @@ public class Player : MonoBehaviour
         {
             case SceneType.TestPlayer:
                 player = new Character();
-                gameObject.GetComponent<CharacterBag>().Init(this, true);
+                bag.Init(this, true);
                 break;
             default:
                 isNew = InitPlayer();
-                gameObject.GetComponent<CharacterBag>().Init(0, isNew);
+                bag.Init(0, isNew);
                 break;
         }
-        
+
+        //TO-DO: заглушка
+        attackManager.SetWeapon(weaponShop.Shop[0], weaponShop.Shop[1]);
 
         gameObject.transform.position = new Vector3(player.PosX, 0.5f, player.PosZ);
         Camera.main.transform.position = new Vector3(player.PosX, 7f, player.PosZ - 7f);
-        manager = gameObject.GetComponent<ActionManager>();
-
-        int i = 0;
     }
 
     private void OnDestroy()
@@ -52,11 +53,6 @@ public class Player : MonoBehaviour
             WorldData.Characters[0].PosX = Mathf.RoundToInt(pos.x);
             WorldData.Characters[0].PosZ = Mathf.RoundToInt(pos.z);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private bool InitPlayer()
@@ -97,9 +93,7 @@ public class Player : MonoBehaviour
     {
         return transform.position;
     }
-
     
-
     public Vector3 GetCurrentTile()
     {
         Vector3 res = new Vector3();
