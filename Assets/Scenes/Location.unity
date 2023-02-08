@@ -231,10 +231,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingContainer: {fileID: 1754850801}
-  player: {fileID: 0}
+  player: {fileID: 2105403943}
   totalBuildingList: {fileID: 11400000, guid: ae857eda426cd09448517b69b75510e7, type: 2}
   InMenu: 0
   gameMode: 0
+  sceneType: 0
   BuildView: {fileID: 1722668446}
   DefaultView: {fileID: 641235185}
 --- !u!4 &13623093
@@ -4338,11 +4339,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1369472384}
-  agent: {fileID: 0}
-  EndPointTrashold: 0.5
+  attackManager: {fileID: 0}
   Moving: 0
+  AllowAttack: 1
   ActionReady: 1
   Idle: 0
+  attackDistance: 2
+  attackAngle: 40
+  AttackHitPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2105403943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4355,7 +4359,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7712562cf590a4f4baf4b8a2338e90c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponShop: {fileID: 11400000, guid: 51c35fe03898b7e4bba0efd038dd3a45, type: 2}
   animator: {fileID: 1369472384}
+  locationController: {fileID: 13623092}
+  attackManager: {fileID: 0}
+  bag: {fileID: 2105403941}
 --- !u!4 &2105403944
 Transform:
   m_ObjectHideFlags: 0
