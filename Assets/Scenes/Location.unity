@@ -4289,6 +4289,7 @@ GameObject:
   - component: {fileID: 2105403942}
   - component: {fileID: 2105403941}
   - component: {fileID: 2105403940}
+  - component: {fileID: 2105403945}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4362,7 +4363,7 @@ MonoBehaviour:
   weaponShop: {fileID: 11400000, guid: 51c35fe03898b7e4bba0efd038dd3a45, type: 2}
   animator: {fileID: 1369472384}
   locationController: {fileID: 13623092}
-  attackManager: {fileID: 0}
+  attackManager: {fileID: 2105403945}
   bag: {fileID: 2105403941}
 --- !u!4 &2105403944
 Transform:
@@ -4381,6 +4382,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2105403945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105403939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5374b75f2f6db4380f108d053f7fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentWeapon:
+    WeaponSO: {fileID: 0}
+    weaponType: 0
+    ShellSprite: {fileID: 0}
+    BaseDmg: 0
+    AttackTypes: []
+  MeleeWeapon:
+    WeaponSO: {fileID: 0}
+    weaponType: 0
+    ShellSprite: {fileID: 0}
+    BaseDmg: 0
+    AttackTypes: []
+  RangedWeapon:
+    WeaponSO: {fileID: 0}
+    weaponType: 0
+    ShellSprite: {fileID: 0}
+    BaseDmg: 0
+    AttackTypes: []
+  ShellContainer: {fileID: 0}
+  CurrentTargetPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &2114001935
 GameObject:
   m_ObjectHideFlags: 0
