@@ -30,6 +30,7 @@ public class BuildingContainerScr : MonoBehaviour
         GameObject newBld = GameObject.Instantiate(Preloader.BuildingPrefab, new Vector3(t.LocalX, 0.5f, t.LocalZ), Quaternion.identity, gameObject.transform);
         newBld.name = t.Contains.Name;
         newBld.GetComponent<BuildingScript>().SO = bsi;
+        //newBld.GetComponent<BuildingScript>().id = [GUID из WorldData];
 
         GameObject sprite = newBld.transform.Find("Sprite").gameObject;
         SpriteRenderer s = sprite.gameObject.GetComponent<SpriteRenderer>();

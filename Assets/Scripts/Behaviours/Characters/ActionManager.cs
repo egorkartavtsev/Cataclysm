@@ -12,8 +12,8 @@ using System.Linq;
 public class ActionManager : MonoBehaviour
 {
     public Animator animator;
-    public NavMeshAgent agent;
-    public float EndPointTrashold = 0.5f;
+    public AttackManager attackManager;
+
 
     public bool Moving;
     public bool AllowAttack = true;
@@ -45,6 +45,11 @@ public class ActionManager : MonoBehaviour
         animator.SetTrigger("Bite");
     }
 
+    public void DoAction()
+    {
+        CurrentAction.Work();
+    }
+
     public void StartAttack(Vector3 pos)
     {
         AllowAttack = false;
@@ -54,27 +59,20 @@ public class ActionManager : MonoBehaviour
 
         animator.SetFloat("Horizontal", dirX);
         animator.SetFloat("Vertical", dirZ);
-        animator.SetTrigger("Attack");
-        //
+        string attackType = attackManager.CurrentWeaponType();
+        Debug.Log(attackType);
+        animator.SetTrigger($"{attackType}Attack");
     }
 
-    public void DoAction()
+    public void ToggleWeapon()
     {
-        CurrentAction.Work();
+        attackManager.ToggleCurrentWeapon();
     }
 
     public void DoAttack()
     {
-        Vector3 position = transform.transform.position;
-        GameObject.FindGameObjectsWithTag("Enemy")
-            .Where(
-                e => Geometry.PointInCircle(e.transform.position, position, 2)
-                  && Geometry.ValidAngle(position, e.transform.position, AttackHitPoint, 60f)
-            ).ToList()
-            .ForEach(
-                e => e.GetComponent<ActionManager>().TakeDamage()
-            );
-
+        attackManager.SetDamage(AttackHitPoint);
+        AttackHitPoint = new Vector3();
     }
 
     public void DoMove(Vector3 offset, CharacterMoveDirection direct)
@@ -117,8 +115,4 @@ public class ActionManager : MonoBehaviour
         animator.SetTrigger("TakeDamage");
     }
 
-    public void SetDamage()
-    {
-
-    }
 }
