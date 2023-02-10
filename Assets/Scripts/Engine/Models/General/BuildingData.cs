@@ -14,5 +14,17 @@ namespace Models
         public int HP { get; set; }
         public Tile MainTile { get; set; }
         public SettlementData Settlement { get; set; }
+
+        public static BuildingData Create(string name, int health, Tile mainTile, SettlementData settlement)
+        {
+            var bd = new BuildingData();
+            bd.Id = Guid.NewGuid();
+            bd.Name = name;
+            bd.HP = health;
+            bd.MainTile = mainTile;
+            bd.Settlement = settlement;
+
+            return bd;
+        }
     }
 }

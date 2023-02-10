@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-
 using Models;
+using Unity.VisualScripting;
 
 namespace GameData
 {
@@ -18,7 +18,18 @@ namespace GameData
         public static List<LocationData> Locations { get; set; }
         public static List<SettlementData> Settlements { get; set; }
         public static List<Character> Characters { get; set; }
-        public static List<BuildingData> Buildings { get; set; }
+
+
+        private static IList<BuildingData> _Buildings = new List<BuildingData>();
+        public static IReadOnlyList<BuildingData> Buildings { get
+            {
+                return (IReadOnlyList<BuildingData>)_Buildings.AsReadOnlyList();
+            }}
+        public static void AddBuilding(BuildingData buildingData)
+        {
+            if (buildingData == null) return;
+            _Buildings.Add(buildingData);
+        }
 
         public static void AddLocation(LocationData locationData)
         {
@@ -50,6 +61,15 @@ namespace GameData
             Locations = data.Locations;
             Characters = data.Characters;
             Settlements = data.Settlements;
+
+            var tiles = WorldData.Locations.Find(l => l.Current).Tiles
+                .Where(t => t.Contains != null && t.Contains.ObjectType == LocationObjectType.Building)
+                .ToList();
+            _Buildings = tiles
+                .Where((tile)=>tile.Contains.MainObjectTile)
+                .Select((tile) => 
+                    BuildingData.Create(tile.Contains.Name, tile.Contains.Health, tile, Settlements.Where(s=>s.Home).First() )
+                ).ToList();
         }
     }
 }
