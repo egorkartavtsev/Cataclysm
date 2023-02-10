@@ -102,7 +102,8 @@ public class Construction : MonoBehaviour
         LocationEventManager.PlaceConstruction(tilesGrid);
         LocationEventManager.ChangeGameMode(GameMode.DefaultView);
 
-        //TO-DO: Добавлять в WorldData + Generate GUID
+        var buildingData = BuildingData.Create(SO.Name, SO.StartHP, mainTile, WorldData.Settlements.Find(s=>s.Home));
+        WorldData.AddBuilding(buildingData);
 
         Cancel(GameMode.DefaultView);
     }
