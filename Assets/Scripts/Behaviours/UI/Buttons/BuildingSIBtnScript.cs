@@ -46,19 +46,8 @@ public class BuildingSIBtnScript : MonoBehaviour
     {
         if (_allowed && BuildingSO.Unique)
         {
-            List<Tile> blds = WorldData
-                .Locations
-                .Find(l => l.Current)
-                .Tiles
-                .Where(t => t.Contains != null && t.Contains.ObjectType == LocationObjectType.Building)
-                .ToList();
-
-            //TO-DO:
-            //var bs = WorldData.Buildings.Where(b => b.Settlement.Home && b.Name).ToList();
-
-            Tile lbo = blds.Where(b => b.Contains.Name == BuildingSO.Name).FirstOrDefault();
-
-            _allowed = lbo == null;
+            var building = WorldData.Buildings.Where(b => b.Name == BuildingSO.Name).FirstOrDefault();
+            _allowed = building == null;
         }
     }
 
@@ -66,16 +55,8 @@ public class BuildingSIBtnScript : MonoBehaviour
     {
         if (_allowed && BuildingSO.NeedlyBuilding != null)
         {
-            List<Tile> blds = WorldData
-                .Locations
-                .Find(l => l.Current)
-                .Tiles
-                .Where(t => t.Contains != null && t.Contains.ObjectType == LocationObjectType.Building)
-                .ToList();
-
-            Tile lbo = blds.Where(b => b.Contains.Name == BuildingSO.NeedlyBuilding.Name).FirstOrDefault();
-
-            _allowed = lbo != null;
+            var building = WorldData.Buildings.Where(b => b.Name == BuildingSO.NeedlyBuilding.Name).First();
+            _allowed = building != null;
         }
     }
 
