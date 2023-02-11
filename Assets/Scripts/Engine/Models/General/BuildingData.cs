@@ -13,6 +13,7 @@ namespace Models
         public string Name { get; set; }
         public int HP { get; set; }
         public Tile MainTile { get; set; }
+        public IList<Tile> Tiles { get; set; }
         public SettlementData Settlement { get; set; }
 
         public static BuildingData Create(string name, int health, Tile mainTile, SettlementData settlement)
