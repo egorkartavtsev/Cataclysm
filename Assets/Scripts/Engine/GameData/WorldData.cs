@@ -25,6 +25,12 @@ namespace GameData
             {
                 return (IReadOnlyList<BuildingData>)_Buildings.AsReadOnlyList();
             }}
+
+        public static void AddCampfire(BuildingData buildingData)
+        {
+            buildingData.Tiles.Add(buildingData.MainTile);
+            _Buildings.Add(buildingData);
+        }
         public static void AddBuilding(BuildingData buildingData)
         {
             if (buildingData == null) return;

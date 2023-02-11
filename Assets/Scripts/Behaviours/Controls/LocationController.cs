@@ -71,6 +71,8 @@ public class LocationController : MonoBehaviour
             MainObjectTile = true
         };
 
+        WorldData.AddCampfire(BuildingData.Create("Campfire", 100, t, null));
+
         List<Tile> tiles = new List<Tile>();
         tiles.Add(t);
         LocationEventManager.PlaceConstruction(tiles);
