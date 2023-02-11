@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using GameData;
 using Models;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
+using Assets.Scripts.Behaviours.Buildings;
 
 public class Construction : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class Construction : MonoBehaviour
 
     public BuildingShopItem SO;
 
+    private AbstractConstruction abstractConstruction;
+
     private void Start()
     {
         BVCamera = GameObject.Find("BuildingView");
@@ -26,8 +30,10 @@ public class Construction : MonoBehaviour
         playerControl.SetCurrentConstruction(this);
 
         LocationEventManager.GameModeChanged += Cancel;
-        GameObject player = GameObject.Find("Player");
-        Vector3 pos = player.GetComponent<Player>().GetCurrentTile();
+
+        this.abstractConstruction = GetAbstractConstruction();
+
+        Vector3 pos = abstractConstruction.GetPos();
         gameObject.transform.position = new Vector3(pos.x, 0f, pos.z);
     }
 
@@ -47,65 +53,25 @@ public class Construction : MonoBehaviour
 
     public void MoveTo(Vector3 offset)
     {
-        gameObject.transform.position += offset;
-        Vector3 pos = gameObject.transform.position;
-
-        BVCamera.transform.position = new Vector3(pos.x, 7f, pos.z - 6);
-
-        bool state = BuildAllow(pos);
-
-        AllowGrid.SetActive(state);
-        LockedGrid.SetActive(!state);
+        abstractConstruction.MoveTo(offset);
     }
 
     public void Install()
     {
-        Vector3 pos = gameObject.transform.position;
-
-        if (!BuildAllow(pos)) return;
-
-        Tile mainTile = new Tile();
-
-        List<Tile> tilesGrid = WorldData
-            .Locations.Find(l => l.Current).Tiles.Where<Tile>(t =>
-                t.LocalX >= pos.x - SO.SizeXZ &&
-                t.LocalX <= pos.x + SO.SizeXZ &&
-                t.LocalZ >= pos.z - SO.SizeXZ &&
-                t.LocalZ <= pos.z + SO.SizeXZ)
-            .ToList();
-
-        tilesGrid.ForEach(t =>
-            {
-                bool main = t.LocalX == pos.x && t.LocalZ == pos.z;
-
-                t.Contains = new LocationObject()
-                {
-                    Name = SO.Name,
-                    Health = SO.StartHP,
-                    ObjectType = LocationObjectType.Building,
-                    MainObjectTile = main
-                };
-
-                if (main) mainTile = t;
-            }
-        );
-
-        var container = GameObject.Find("BuildingContainer").GetComponent<BuildingContainerScr>();
-        
-        //проверка на needly
-        if (!container.totalBuildingList.BuildList.Contains(SO.NeedlyBuilding)) return;
-        container.ShowNewBuild(mainTile, SO);
-
-
-        WorldData.Settlements.Find(s => s.Home).WriteOffFromStock(SO.BuildMaterials);
-
-        LocationEventManager.PlaceConstruction(tilesGrid);
-        LocationEventManager.ChangeGameMode(GameMode.DefaultView);
-
-        var buildingData = BuildingData.Create(SO.Name, SO.StartHP, mainTile, WorldData.Settlements.Find(s=>s.Home));
-        WorldData.AddBuilding(buildingData);
-
+        abstractConstruction.Install();
         Cancel(GameMode.DefaultView);
+    }
+
+    private AbstractConstruction GetAbstractConstruction()
+    {
+        if(SO.NextLevelFor == null)
+        {
+            return new DefaultConstruction(SO,Preloader, AllowGrid, LockedGrid, MainSprite, playerControl, BVCamera, this.gameObject);
+        } 
+        else
+        {
+            return new NextLeveConstruction();
+        }
     }
 
     void DrawGrid()
@@ -130,23 +96,7 @@ public class Construction : MonoBehaviour
 
     bool BuildAllow(Vector3 pos)
     {
-        bool res = true;
-
-        WorldData
-            .Locations
-            .Find(l => l.Current)
-            .Tiles.Where<Tile>(t =>
-                t.LocalX >= pos.x - SO.SizeXZ &&
-                t.LocalX <= pos.x + SO.SizeXZ &&
-                t.LocalZ >= pos.z - SO.SizeXZ &&
-                t.LocalZ <= pos.z + SO.SizeXZ)
-            .ToList()
-            .ForEach(t =>
-            {
-                if (res) res = t.Contains == null;
-            });
-
-        return res;
+        return abstractConstruction.BuildAllow(pos);
     }
 
     private void Cancel(GameMode mode)
@@ -158,5 +108,5 @@ public class Construction : MonoBehaviour
     private void OnDestroy()
     {
         LocationEventManager.GameModeChanged -= Cancel;
-    }
+    } 
 }
