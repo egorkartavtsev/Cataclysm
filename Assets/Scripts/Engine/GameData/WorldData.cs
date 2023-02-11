@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using Models;
 using Unity.VisualScripting;
+using static UnityEditor.PlayerSettings;
 
 namespace GameData
 {
@@ -36,6 +37,26 @@ namespace GameData
             if (buildingData == null) return;
             _Buildings.Add(buildingData);
         }
+
+        private static IList<Tile> GetBuildingTiles(BuildingData building)
+        {
+            return building.Tiles;
+            /*return Locations.Find(l => l.Current).Tiles
+                .Where<Tile>(t =>
+                t.Contains.Name==building.Name
+                ).ToList();*/
+        }
+        public static void RemoveBuilding(string buildingName)
+        {
+            if (buildingName.Equals(string.Empty)) return;
+            var building = _Buildings.Where(b=>b.Name==buildingName).FirstOrDefault();
+            GetBuildingTiles(building).ToList().ForEach(tile =>
+            {
+                tile.Contains = null;
+            });
+            _Buildings.Remove(building);
+        }
+
 
         public static void AddLocation(LocationData locationData)
         {
