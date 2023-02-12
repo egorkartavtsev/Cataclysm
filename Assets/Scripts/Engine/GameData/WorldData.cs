@@ -47,10 +47,6 @@ namespace GameData
                 t.Contains?.Name == building.Name
                 ).ToList();
             return building.Tiles;
-            /*return Locations.Find(l => l.Current).Tiles
-                .Where<Tile>(t =>
-                t.Contains.Name==building.Name
-                ).ToList();*/
         }
         public static void RemoveBuilding(string buildingName)
         {
