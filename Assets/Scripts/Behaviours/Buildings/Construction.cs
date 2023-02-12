@@ -58,8 +58,9 @@ public class Construction : MonoBehaviour
 
     public void Install()
     {
-        abstractConstruction.Install();
-        Cancel(GameMode.DefaultView);
+        var installed = abstractConstruction.Install();
+
+        if(installed) Cancel(GameMode.DefaultView);
     }
 
     private AbstractConstruction GetAbstractConstruction()
