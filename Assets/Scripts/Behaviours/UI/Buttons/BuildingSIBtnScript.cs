@@ -37,6 +37,7 @@ public class BuildingSIBtnScript : MonoBehaviour
         CheckCallerLevel();
         CheckUnique();
         CheckNeedly();
+        CheckNextLevel();
 
         if (!_allowed)
             SetDisabled();
@@ -60,9 +61,15 @@ public class BuildingSIBtnScript : MonoBehaviour
         }
     }
 
-    public void CheckCallerLevel()
+    private void CheckCallerLevel()
     {
         if (_allowed && BuildingSO.MinimalBuilderLevel > parent.Caller.Level)
+            _allowed = false;
+    }
+
+    private void CheckNextLevel()
+    {
+        if(_allowed && BuildingSO.NextLevelFor!=null && WorldData.Buildings.ToList().Where(b => b.Name == BuildingSO.NextLevelFor.Name).Count() == 0)
             _allowed = false;
     }
 
