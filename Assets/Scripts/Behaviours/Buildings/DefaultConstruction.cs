@@ -77,49 +77,7 @@ namespace Assets.Scripts.Behaviours.Buildings
         public override bool Install()
         {
             Vector3 pos = gameObject.transform.position;
-
-            if (!BuildAllow(pos)) return false;
-
-            Tile mainTile = new Tile();
-
-            List<Tile> tilesGrid = WorldData
-                .Locations.Find(l => l.Current).Tiles.Where<Tile>(t =>
-                    t.LocalX >= pos.x - SO.SizeXZ &&
-                    t.LocalX <= pos.x + SO.SizeXZ &&
-                    t.LocalZ >= pos.z - SO.SizeXZ &&
-                    t.LocalZ <= pos.z + SO.SizeXZ)
-                .ToList();
-
-            tilesGrid.ForEach(t =>
-            {
-                bool main = t.LocalX == pos.x && t.LocalZ == pos.z;
-
-                t.Contains = new LocationObject()
-                {
-                    Name = SO.Name,
-                    Health = SO.StartHP,
-                    ObjectType = LocationObjectType.Building,
-                    MainObjectTile = main
-                };
-
-                if (main) mainTile = t;
-            }
-            );
-
-            var container = GameObject.Find("BuildingContainer").GetComponent<BuildingContainerScr>();
-
-            container.ShowNewBuild(mainTile, SO);
-
-
-            WorldData.Settlements.Find(s => s.Home).WriteOffFromStock(SO.BuildMaterials);
-
-            LocationEventManager.PlaceConstruction(tilesGrid);
-            LocationEventManager.ChangeGameMode(GameMode.DefaultView);
-
-            var buildingData = BuildingData.Create(SO.Name, SO.StartHP, mainTile, WorldData.Settlements.Find(s => s.Home));
-            WorldData.AddBuilding(buildingData);
-
-            return true;
+            return BuildAllow(pos);
         }
 
         public override void MoveTo(Vector3 offset)
@@ -129,10 +87,6 @@ namespace Assets.Scripts.Behaviours.Buildings
 
             _BVCamera.transform.position = new Vector3(pos.x, 7f, pos.z - 6);
 
-            bool state = BuildAllow(pos);
-
-            _AllowGrid.SetActive(state);
-            _LockedGrid.SetActive(!state);
         }
 
         public override void Show(BuildingShopItem building)

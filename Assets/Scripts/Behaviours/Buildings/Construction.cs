@@ -8,6 +8,8 @@ using Models;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using Assets.Scripts.Behaviours.Buildings;
+using System.ComponentModel;
+using static UnityEditor.PlayerSettings;
 
 public class Construction : MonoBehaviour
 {
@@ -54,13 +56,34 @@ public class Construction : MonoBehaviour
     public void MoveTo(Vector3 offset)
     {
         abstractConstruction.MoveTo(offset);
+        
+        Vector3 pos = gameObject.transform.position;
+        bool state = BuildAllow(pos);
+
+        AllowGrid.SetActive(state);
+        LockedGrid.SetActive(!state);
     }
 
     public void Install()
     {
         var installed = abstractConstruction.Install();
+        if(installed)
+        {
+            Vector3 pos = gameObject.transform.position;
+            
+            var buildingData = BuildingData.Create(SO.Name, SO.StartHP, null, WorldData.Settlements.Find(s => s.Home));
+            WorldData.AddBuilding(buildingData, pos, SO);
+            
+            var container = GameObject.Find("BuildingContainer").GetComponent<BuildingContainerScr>();
+            container.ShowNewBuild(buildingData.MainTile, SO);
+            
+            WorldData.Settlements.Find(s => s.Home).WriteOffFromStock(SO.BuildMaterials);
 
-        if(installed) Cancel(GameMode.DefaultView);
+            LocationEventManager.PlaceConstruction(buildingData.Tiles.ToList());
+            LocationEventManager.ChangeGameMode(GameMode.DefaultView);
+            Cancel(GameMode.DefaultView);
+        }    
+
     }
 
     private AbstractConstruction GetAbstractConstruction()

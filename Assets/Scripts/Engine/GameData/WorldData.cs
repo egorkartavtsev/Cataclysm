@@ -33,9 +33,37 @@ namespace GameData
             buildingData.Tiles.Add(buildingData.MainTile);
             _Buildings.Add(buildingData);
         }
-        public static void AddBuilding(BuildingData buildingData)
+        public static void AddBuilding(BuildingData buildingData, Vector3 pos, BuildingShopItem SO)
         {
             if (buildingData == null) return;
+
+            Tile mainTile = new Tile();
+
+            List<Tile> tilesGrid = WorldData
+                .Locations.Find(l => l.Current).Tiles.Where<Tile>(t =>
+                    t.LocalX >= pos.x - SO.SizeXZ &&
+                    t.LocalX <= pos.x + SO.SizeXZ &&
+                    t.LocalZ >= pos.z - SO.SizeXZ &&
+                    t.LocalZ <= pos.z + SO.SizeXZ)
+                .ToList();
+
+            tilesGrid.ForEach(t =>
+            {
+                bool main = t.LocalX == pos.x && t.LocalZ == pos.z;
+
+                t.Contains = new LocationObject()
+                {
+                    Name = SO.Name,
+                    Health = SO.StartHP,
+                    ObjectType = LocationObjectType.Building,
+                    MainObjectTile = main
+                };
+
+                if (main) mainTile = t;
+            }
+            );
+            buildingData.MainTile = mainTile;
+            buildingData.Tiles = tilesGrid;
             _Buildings.Add(buildingData);
         }
 

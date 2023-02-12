@@ -33,49 +33,10 @@ namespace Assets.Scripts.Behaviours.Buildings
 
         public override bool Install()
         {
-            Vector3 pos = gameObject.transform.position;
-
             WorldData.RemoveBuilding(SO.NextLevelFor.Name);
-
-            Tile mainTile = new Tile();
-
-            List<Tile> tilesGrid = WorldData
-                .Locations.Find(l => l.Current).Tiles.Where<Tile>(t =>
-                    t.LocalX >= pos.x - SO.SizeXZ &&
-                    t.LocalX <= pos.x + SO.SizeXZ &&
-                    t.LocalZ >= pos.z - SO.SizeXZ &&
-                    t.LocalZ <= pos.z + SO.SizeXZ)
-                .ToList();
-
-            tilesGrid.ForEach(t =>
-            {
-                bool main = t.LocalX == pos.x && t.LocalZ == pos.z;
-
-                t.Contains = new LocationObject()
-                {
-                    Name = SO.Name,
-                    Health = SO.StartHP,
-                    ObjectType = LocationObjectType.Building,
-                    MainObjectTile = main
-                };
-
-                if (main) mainTile = t;
-            }
-            );
-
+            
             var container = GameObject.Find("BuildingContainer").GetComponent<BuildingContainerScr>();
-
             container.HideOldBuild(SO.NextLevelFor);
-            container.ShowNewBuild(mainTile, SO);
-
-
-            WorldData.Settlements.Find(s => s.Home).WriteOffFromStock(SO.BuildMaterials);
-
-            LocationEventManager.PlaceConstruction(tilesGrid);
-            LocationEventManager.ChangeGameMode(GameMode.DefaultView);
-
-            var buildingData = BuildingData.Create(SO.Name, SO.StartHP, mainTile, WorldData.Settlements.Find(s => s.Home));
-            WorldData.AddBuilding(buildingData);
 
             return true;
         }
