@@ -71,7 +71,7 @@ public class Construction : MonoBehaviour
         } 
         else
         {
-            return new NextLeveConstruction();
+            return new NextLevelConstruction(this.gameObject, SO, BVCamera);
         }
     }
 
