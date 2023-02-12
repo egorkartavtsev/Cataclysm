@@ -29,6 +29,7 @@ namespace GameData
 
         public static void AddCampfire(BuildingData buildingData)
         {
+            buildingData.Tiles = new List<Tile>();
             buildingData.Tiles.Add(buildingData.MainTile);
             _Buildings.Add(buildingData);
         }
