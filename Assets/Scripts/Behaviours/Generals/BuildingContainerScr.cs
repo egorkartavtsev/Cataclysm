@@ -40,4 +40,10 @@ public class BuildingContainerScr : MonoBehaviour
         s.size = new Vector2(width, bsi.Height);
         sprite.transform.localPosition = new Vector3(0f, bsi.YOffset, bsi.ZOffset);
     }
+
+    public void HideOldBuild(BuildingShopItem old)
+    {
+        var go = GameObject.Find(old.Name);
+        GameObject.Destroy(go);
+    }
 }
