@@ -40,6 +40,11 @@ namespace GameData
 
         private static IList<Tile> GetBuildingTiles(BuildingData building)
         {
+            if(building.Tiles!=null) return building.Tiles;
+            building.Tiles = Locations.Find(l => l.Current).Tiles
+                .Where(t =>
+                t.Contains?.Name == building.Name
+                ).ToList();
             return building.Tiles;
             /*return Locations.Find(l => l.Current).Tiles
                 .Where<Tile>(t =>
