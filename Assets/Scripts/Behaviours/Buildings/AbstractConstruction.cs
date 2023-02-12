@@ -26,7 +26,7 @@ namespace Assets.Scripts.Behaviours.Buildings
        
         public abstract void MoveTo(Vector3 offset);
        
-        public abstract void Install();
+        public abstract bool Install();
       
         public abstract bool BuildAllow(Vector3 pos);
 

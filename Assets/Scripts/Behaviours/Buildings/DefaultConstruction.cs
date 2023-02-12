@@ -74,11 +74,11 @@ namespace Assets.Scripts.Behaviours.Buildings
             return res;
         }
 
-        public override void Install()
+        public override bool Install()
         {
             Vector3 pos = gameObject.transform.position;
 
-            if (!BuildAllow(pos)) return;
+            if (!BuildAllow(pos)) return false;
 
             Tile mainTile = new Tile();
 
@@ -108,8 +108,6 @@ namespace Assets.Scripts.Behaviours.Buildings
 
             var container = GameObject.Find("BuildingContainer").GetComponent<BuildingContainerScr>();
 
-            //проверка на needly
-            //if (!container.totalBuildingList.BuildList.Contains(SO.NeedlyBuilding)) return;
             container.ShowNewBuild(mainTile, SO);
 
 
@@ -121,6 +119,7 @@ namespace Assets.Scripts.Behaviours.Buildings
             var buildingData = BuildingData.Create(SO.Name, SO.StartHP, mainTile, WorldData.Settlements.Find(s => s.Home));
             WorldData.AddBuilding(buildingData);
 
+            return true;
         }
 
         public override void MoveTo(Vector3 offset)
